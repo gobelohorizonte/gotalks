@@ -1,0 +1,360 @@
+Do zero ao deploy
+Receiving files in an api REST
+Tags: go, rest, uploads files, api gateway, aws, amazon
+
+Jefferson Otoni Lima
+*CEO* & *Co-Fundador* | S3wf & S3commerce entrepreneur 2007
+*Full-Stack* *programmer*
+
+* Camadas OSI!
+
+#.image images/camada-osi-wiki.png 
+.image images/Osi-tcpip.png
+
+* Arquiteturas, protocolos para troca de informações
+
+- Sockets {tcp/udp} / [[https://golang.org/pkg/net/][pkg net]]
+
+- WebSocket {http/https} / [[https://godoc.org/golang.org/x/net/websocket][pkg websocket]]
+
+- Rpc {http/tcp} / [[https://golang.org/pkg/net/rpc/][pkg rpc]]
+
+- Web Services {http/https} / [[https://github.com/gorilla/mux][Rest]] e [[https://github.com/fiorix/wsdl2go][Soap]]
+
+- Todos nossos Exemplos [[][Golang]]
+
+
+* Socket communication {"everything is a file"}
+
+.image images/socket.png
+
+
+* Socket / server main()
+
+.code -edit code/socket-server-0.go /^func main/,/^}/
+
+.image images/go-aviator.png 600 600
+
+
+* Socket / server func RedWriteSocket()
+
+.code -edit code/socket-server-0.go /^func RedWriteSocket/,/^}/
+
+.image images/go-aviator.png 600 600
+
+* Socket / client main()
+
+.code -edit code/socket-client-0.go /^func main/,/^}/
+
+.image images/go-aviator.png 600 600
+
+* Socket / client readerServer()
+
+.code -edit code/socket-client-0.go /^func readerServer/,/^}/
+
+.image images/go-aviator.png 600 600
+
+* O que é Socket TCP ?
+
+- net.Listen("tcp", PORT)
+
+- net.ListenTCP("tcp", tcpAddr)
+
+.image images/go-aviator.png 600 600
+
+* Socket Tcp / server main()
+
+.code -edit code/socket-tcp-server.go /^func main/,/^}/
+
+.image images/go-aviator.png 600 600
+
+* Socket Tcp / client main()
+
+.code -edit code/socket-tcp-client.go /^func main/,/^}/
+
+.image images/go-aviator.png 600 600
+
+* O que é WebSockets ?
+
+- http.ListenAndServe(":1234", nil)
+.image images/go-aviator.png 600 600
+
+
+* WebSockets Server main
+
+.code -edit code/websocker-server.go /^func main/,/^}/
+
+.image images/go-aviator.png 600 600
+
+
+* WebSockets ListenWebSocker()
+
+.code -edit code/websocker-server.go /^func ListenWebSocker/,/^}/
+
+.image images/go-aviator.png 600 600
+
+
+* WebSockets Client
+
+        var wsuri = "ws://127.0.0.1:1234/chat"; // Url
+
+        window.onload = function() {
+            
+            sock = new WebSocket(wsuri); // Connecting in our websocket
+
+            sock.onopen = function() {
+                console.log("connected to " + wsuri);
+                document.getElementById("connect").innerHTML = "online" 
+            }
+
+            // Receiving message from the server
+            sock.onmessage = function(e) {
+                console.log("message received: " + e.data);
+                document.getElementById('msg-server').value = e.data
+            }
+        };
+
+        function send() { // Sending msg to server
+            var msg = document.getElementById('message').value;
+            sock.send(msg);
+        };
+
+.image images/go-aviator.png 600 600
+
+* RPC Como funciona ?
+
+.image images/rpc-4.png 500 800
+
+* Tipos de RCP
+
+- [[https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto][acrônimo de Remote Procedure Call]] / [[https://github.com/valyala/gorpc][GoRpc]]
+
+- CORBA — padrão RPC independente de plataforma
+
+- Sun RPC — RPC para as plataformas Unix e Linux
+
+- DCOM — RPC para Windows
+
+- RMI — RPC para Java
+
+- SOAP — padrão RPC para web service
+
+- JRES - Java Remote Execution
+
+.image images/go-aviator.png 600 600
+
+
+* RPC http/https Server
+
+.code -edit code/rpc-http-server.go /^func main/,/^}/
+
+* RPC http/https Call Stop server
+
+.code -edit code/rpc-http-server.go /^type Stop/,/^}/
+
+* RPC http/https Client
+
+.code -edit code/rpc-http-client.go /^func main/,/^}/
+
+* RPC Tcp / Json Server
+
+.code -edit code/rpc-tcp-server.go /^func main/,/^}/
+
+* RPC Tcp / Json Client
+
+.code -edit code/rpc-tcp-client.go /^func main/,/^}/
+
+* Tipos de Web Services / http/https {json/xml}
+
+- [[https://pt.wikipedia.org/wiki/REST][REST]] / [[https://github.com/gorilla/mux][Framework Mux]]
+
+- [[https://pt.wikipedia.org/wiki/SOAP][SOAP]] / [[https://github.com/fiorix/wsdl2go][framework {wsdl2Go]][[https://github.com/kylewolfe/soaptrip][ , Soaptrip}]]
+
+- [[https://pt.wikipedia.org/wiki/XML-RPC][XML-RPC]] / [[https://github.com/kolo/xmlrpc][XmlRpc]]
+
+.image images/go-aviator.png 600 600
+.caption _Backend_Developer_at_ [[https://www.s3wf.com.br/][s3wf]]
+
+
+* Como funciona o protocolo HTTP ?
+
+- [[https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol][Hypertext Transfer Protocol]]
+
+- Mensagem HTTP [[https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP][códigos http]]
+
+- Cabeçalho da mensagem [[https://tools.ietf.org/html/rfc2616][*RFC* *2616*]]
+
+- Corpo da mensagem 
+
+- Requisição (Request-Line,Request-header,Method, URI e HTTP-Version)
+
+- Métodos (GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS e CONNECT)
+
+.image images/go-aviator.png 600 600
+
+
+* O que é REST ?
+
+- [[https://pt.wikipedia.org/wiki/REST][*REST*]] (Representational State Transfer)
+
+- É uma *abstração* da *arquitetura* da World Wide Web [pattern]
+
+- *2000* por [[https://en.wikipedia.org/wiki/Roy_Fielding][Roy Fielding]]
+
+- [[https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto][RPC]] não é um exemplo de REST
+
+- RESTful (_São_ _as_ _aplicações_ _ou_ _sistemas_ _que_ _usam_ _princípio_ _REST_)
+
+.image images/go-aviator.png 600 600
+
+* Concepções Rest
+
+- Resources 		 = /insert, /update , /search [URI]
+
+- Representation 	 = Html, Json, Xml, ... / Content-Type
+
+- State Transfer 	 = GET, POST, PUT ...
+
+.image images/go-aviator.png 600 600
+
+
+* Implementação REST
+
+.image images/rest-1.png
+
+* Scaling REST
+
+.image images/rest-2.png
+
+* Implementação RESTFul
+
+.image images/rest-3.png
+
+
+* Clientes REST
+
+- [[https://ec.haxx.se][cURL (_criar_ _requisições_ _em_ _diversos_ _protocolos_)]]
+
+- [[https://www.getpostman.com/][Postman]]
+
+- [[https://httpie.org/][HTTPie]]
+
+- [[https://www.hurl.it/][Hurl.it]]
+
+.image images/go-aviator.png 600 600
+
+
+* API Layers & Serviços REST 
+
+- [[https://console.aws.amazon.com/apigateway][Api Gateway]] (_Amazon_)
+
+- [[https://docs.microsoft.com/en-us/azure/api-management/][Azure]] (_Microsoft_)
+
+- [[https://www.dreamfactory.com/][Dreamfactory]] (_Dreamfactory_)
+
+- [[https://firebase.google.com/docs/database/rest/start?hl=pt-br][Firebase]] (_Google_)
+
+- [[https://getkong.org/][kong]] (_Gerenciador_ _de_ _APIs_ _e_ _Microserviços_ _open_-_source_)
+
+.image images/go-aviator.png 600 600
+
+
+* Frameworks REST
+
+- [[https://github.com/avelino/awesome-go/blob/master/README.md][awesome-go]] (_links_ _diversos_)
+
+- [[https://github.com/gorilla/mux][Mux]] (_simples_ _roteador_ _url_)
+
+- [[https://github.com/julienschmidt/httprouter][HttpRouter]] (_poderoso_ _roteador_ _url_)
+
+- [[https://github.com/verdverm/frisby][Frisby]] (_REST_ _API_ _TEST_)
+
+- [[https://github.com/pressly/chi][Pressly chi]] (_Http_ _Service_ _REST_)
+
+- [[https://github.com/rs/formjson][Go JSON handler]]
+
+- [[https://github.com/alioygur/gores][gores]] (_handles_ _HTML_, _JSON_, _XML_)
+
+.image images/golang1.png 
+
+
+* Opa.. Golang now!
+
+.image images/golang1.png 
+
+* Diferentes chamadas da ListenAndServe 
+
+ // nativo
+ http.ListenAndServe(":8088", nil)
+ 
+ // ssl
+ http.ListenAndServeTLS(":443", server.crt, yourkey.key, nil)
+
+ // servindo um site estático
+ http.ListenAndServe(":8080", http.FileServer(http.Dir("/static/site"))))
+
+ // usando o pkg httpRouter
+ router := httprouter.New()
+ log.Fatal( http.ListenAndServe(":9999", router) )
+ 
+ // usando Mux
+ router  := mux.NewRouter()
+ router2 := mux.NewRouter()
+ conf := &http.Server{ Handler: router, Addr: ":8080" }
+ conf.ListenAndServe()
+
+ // ssl
+ confssl := &http.Server{ Handler: router, Addr:":443",TLSConfig:cfgs,TLSNextProto:""}
+ confssl.ListenAndServeTLS(cfg.Pem, cfg.Key))
+
+
+* Server nativo {Criando rotas}
+
+.code -edit code/rest-nativo-server.go /^func Hello/,/^func main/,/^}/
+
+
+* Server httpRouter {Criando rotas}
+
+.code -edit code/rest-httprouter-server.go /^func main/,/^}/
+
+* Server Mux {Criando rotas}
+
+.code -edit code/rest-mux-server.go /^func main/,/^}/
+
+
+* Uploads FormFile
+
+.image images/golang1.png 
+
+
+* Uploads FormFile multipart
+
+.image images/golang1.png 
+
+
+* Uploads Binary
+
+.image images/golang1.png 
+
+* Uploads Binary Api Gateway
+
+.image images/golang1.png
+
+* Uploads S3 aws
+
+.image images/golang1.png
+
+
+* Referências
+
+.link https://github.com/avelino/awesome-go/blob/master/README.md
+.link https://golang.org/pkg/net
+.link https://godoc.org/golang.org/x/net/websocket
+.link https://golang.org/pkg/net/rpc
+.link https://github.com/gorilla/mux
+.link https://github.com/fiorix/wsdl2go
+.link https://github.com/julienschmidt/httprouter
+
+
+* Dúvidas?
+.image images/help.png
