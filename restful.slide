@@ -1,0 +1,270 @@
+Do zero ao deploy
+Receiving files in an api REST
+Tags: go, rest, uploads files, api gateway, aws, amazon
+
+Jefferson Otoni Lima
+*CEO* & *Co-Fundador* | S3wf & S3commerce entrepreneur 2007
+*Full-Stack* *programmer*
+
+* Alguns projetos atuais que participo!
+
+- Web service REST para Uploads e Downloads
+
+- Web service REST para ser consumido
+
+- Microserviços
+
+- Integrações com Mercado Livre / Moip / Correio / JadLog / B2W 
+
+- Integrações com Amazon / S3 / EFS / API Gatewy / SES /SQS 
+
+.image images2/golang4.png
+
+* Recebendo arquivos em uma api REST !
+
+Cronstruindo um restful para ser consumido ...
+
+.image images2/images12.png
+
+* Criação do servidor REST
+
+- Qual Gateway ou Proxy Reverse usar ?
+
+- Qual arquitetura implementar ?
+
+- Como vamos Escalar ?
+
+- Qual linguagem/Framework usar ?
+
+- Vamos fazer decomposição do sistema ?
+
+.image images2/golang2.png
+
+
+* API Layers, Gateways e Proxy
+
+- [[https://console.aws.amazon.com/apigateway][Api Gateway]] (_Amazon_)
+
+- [[https://docs.microsoft.com/en-us/azure/api-management/][Azure]] (_Microsoft_)
+
+- [[https://www.dreamfactory.com/][Dreamfactory]] (_Dreamfactory_)
+
+- [[https://firebase.google.com/docs/database/rest/start?hl=pt-br][Firebase]] (_Google_)
+
+- [[https://getkong.org/][kong]] (_Gerenciador_ _de_ _APIs_ _e_ _Microserviços_ _open_-_source_)
+
+- [[https://traefik.io/][traefik]] (_HTTP_ _reverse_ _proxy_ _and_ _load_ _balancer_)
+
+.image images/go-aviator.png 600 600
+
+
+* Nossa arquitetura com Gateway
+
+.image images2/api-gateway3.png 490 800
+
+
+* Nossa arquitetura com Proxy Reverse
+
+.image images2/architecture.png 500 900
+
+
+
+* Escalando nosso web service 
+- AWS Elastic Beanstalk
+- AWS Elastic Load Balancing
+.image images2/scale.png
+
+
+* Antes vamos contextualizar 
+
+alguns conceitos importantes !
+
+.image images2/golang7.jpg
+
+
+* O que é REST ?
+
+- [[https://pt.wikipedia.org/wiki/REST][*REST*]] (Representational State Transfer)
+
+- É uma *abstração* da *arquitetura* da World Wide Web [pattern]
+
+- *2000* por [[https://en.wikipedia.org/wiki/Roy_Fielding][Roy Fielding]]
+
+- [[https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto][RPC]] não é um exemplo de REST {[[http://go-talks.appspot.com/github.com/jeffotoni/gotalks/server-rest.slide][Apresentação Socket / RPC]]}
+
+- RESTful (_São_ _as_ _aplicações_ _ou_ _sistemas_ _que_ _usam_ _princípio_ _REST_)
+
+.image images/go-aviator.png 600 600
+
+* Concepções REST
+
+- Resources => /insert, /update, /delete, /search [URI]
+
+- Representation => Html, Json, Xml, ... / Content-Type
+
+- State Transfer => GET, POST, PUT, DELETE ...
+
+.image images/go-aviator.png 600 600
+
+
+* Como funciona o protocolo HTTP ?
+
+- [[https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol][Hypertext Transfer Protocol]]
+
+- Mensagem HTTP [[https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP][códigos http]]
+
+- Cabeçalho da mensagem [[https://tools.ietf.org/html/rfc2616][*RFC* *2616*]]
+
+- Corpo da mensagem 
+
+- Requisição (Request-Line,Request-header,Method, URI e HTTP-Version)
+
+- Métodos (GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS e CONNECT)
+
+.image images/go-aviator.png 600 600
+
+
+* Clientes REST
+
+- [[https://ec.haxx.se][cURL (_criar_ _requisições_ _em_ _diversos_ _protocolos_)]]
+
+- [[https://www.getpostman.com/][Postman]]
+
+- [[https://httpie.org/][HTTPie]]
+
+- [[https://www.hurl.it/][Hurl.it]]
+
+.image images/go-aviator.png 600 600
+
+
+* Frameworks REST
+
+- [[https://github.com/avelino/awesome-go/blob/master/README.md][awesome-go]] (_links_ _diversos_)
+
+- [[https://github.com/sogko/slumber][Slumer]] (_API_ _REST_)
+
+- [[https://github.com/gorilla/mux][Mux]] (_simples_ _roteador_ _url_)
+
+- [[https://github.com/julienschmidt/httprouter][HttpRouter]] (_poderoso_ _roteador_ _url_)
+
+- [[https://github.com/verdverm/frisby][Frisby]] (_REST_ _API_ _TEST_)
+
+- [[https://github.com/pressly/chi][Pressly chi]] (_Http_ _Service_ _REST_)
+
+- [[https://github.com/rs/formjson][Go JSON handler]]
+
+- [[https://github.com/alioygur/gores][gores]] (_handles_ _HTML_, _JSON_, _XML_)
+
+.image images/golang1.png 
+
+
+* Opa.. Golang now, vamos implementar!
+
+.image images/golang1.png 
+
+* Construindo nosso server REST / ListenAndServe ( )
+
+ // http
+ //
+ http.ListenAndServe(":9999", nil)
+
+ // servindo um site estático
+ //
+ http.ListenAndServe(":9999", http.FileServer(http.Dir("/static/site"))))
+ 
+ // ssl
+ //
+ http.ListenAndServeTLS(":443", server.crt, yourkey.key, nil)
+ 
+ // Criando chaves ssl
+ //
+ ~/user-linux$ openssl req -nodes -newkey rsa:2048 -keyout yourkey.key -out serve.csr
+
+
+.image images2/golang6.jpg
+
+* Definindo Rotas Handlers!
+
+
+* Server httpRouter {Criando rotas}
+
+.code -edit code/rest-httprouter-server.go /^func main/,/^}/
+
+* Tipos de Uploads
+
+.code -edit code/server-mux-upload.go /^func main/,/^}/
+
+
+* Copy para servidor único arquivio
+
+.code -edit code/server-mux-upload.go /^func uploadFormFile/,/^}/
+
+
+* Copy para servidor multipolos arquivos
+
+.code -edit code/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
+
+
+* Uploads Binary
+
+.code -edit code/server-mux-upload.go /^func uploadBinary/,/^}/
+
+.image images2/golang4.png
+
+* cURL testando nosso REST
+
+* Upload Form / multipart/form-data
+
+ curl -i -X POST http://localhost:9999/upload-form \
+
+  -u "API_KEY:383883jef903xxxx838xxxx" \
+
+  --form "fileupload=@files/file2.pdf" 
+
+.image images2/golang7.png
+
+* Upload Form multi / multipart/form-data
+
+ curl -i --request POST localhost:9999/upload-form-multi \
+
+   -u "API_KEY:383883jef903xxxx838xxxx" \
+
+   --form 'email=jefferson&password=3838373773' \
+
+   --form "fileupload[]=@files/file1.jpg" \
+
+   --form "fileupload[]=@files/file2.pdf"
+
+.image images2/images11.png
+
+* Upload Binary
+
+ // http://https://xxxxxx.execute-api.us-xxx-x.amazonaws.com/upload-bin \
+ curl -i --request POST http://localhost:9999/upload-bin \
+ 
+   -u "API_KEY:383883jef903xxxx838xxxx" \
+
+   -H "Accept: binary/octet-stream" \
+   
+   -H "Content-Type: binary/octet-stream" \
+
+   -H "Name-File: file2.pdf" \
+
+   --data-binary "@files/file2.pdf"
+ 
+.image images2/golang1.jpg
+
+
+* Referências
+
+.link https://github.com/avelino/awesome-go/blob/master/README.md
+.link https://golang.org/pkg/net
+.link https://godoc.org/golang.org/x/net/websocket
+.link https://golang.org/pkg/net/rpc
+.link https://github.com/gorilla/mux
+.link https://github.com/fiorix/wsdl2go
+.link https://github.com/julienschmidt/httprouter
+
+
+* Dúvidas?
+.image images/help.png

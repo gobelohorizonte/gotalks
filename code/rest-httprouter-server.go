@@ -49,23 +49,16 @@ func main() {
 
 	router := httprouter.New()
 
-	// curl -X GET localhost:9999
-	router.GET("/", Index)
+	router.GET("/", Index) // curl -X GET localhost:9999
 
-	// curl -X GET localhost:9999/hello/jefferson
-	router.GET("/hello/:name", Hello)
+	router.GET("/user/:uid", getuser) // curl -X GET localhost:9999/user/23322
 
-	// curl -X GET localhost:9999/user/23322
-	router.GET("/user/:uid", getuser)
+	router.POST("/adduser/:uid", adduser) // curl -X POST localhost:9999/adduser/232
 
-	// curl -X POST localhost:9999/adduser/232
-	router.POST("/adduser/:uid", adduser)
+	router.DELETE("/deluser/:uid", deleteuser) // curl -X DELETE localhost:9999/deluser/232
 
-	// curl -X DELETE localhost:9999/deluser/232
-	router.DELETE("/deluser/:uid", deleteuser)
+	router.PUT("/moduser/:uid", modifyuser) // curl -X PUT localhost:9999/moduser/232
 
-	// curl -X PUT localhost:9999/moduser/232
-	router.PUT("/moduser/:uid", modifyuser)
-
+	// abrindo porta
 	log.Fatal(http.ListenAndServe(":9999", router))
 }
