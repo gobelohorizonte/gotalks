@@ -44,7 +44,9 @@ func ProductsHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	r := mux.NewRouter()
+	//r2 := mux.NewRouter()
 
+	//r2.HandleFunc("/postest", HomeHandler)
 	r.HandleFunc("/", HomeHandler)
 
 	// curl -X POST localhost:9999/hello -d "name=jefferson"
@@ -57,5 +59,8 @@ func main() {
 	// curl -X POST localhost:9999
 	http.Handle("/", r)
 
-	http.ListenAndServe(":9999", r)
+	go http.ListenAndServe(":9999", r)
+	go func() { http.ListenAndServe(":8080", nil) }()
+	func() { http.ListenAndServe(":8081", nil) }()
+
 }

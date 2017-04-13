@@ -192,9 +192,13 @@ alguns conceitos importantes !
 
 .code -edit code/rest-httprouter-server.go /^func main/,/^}/
 
-* Tipos de Uploads
+* Rotas e Tipos de Uploads
 
 .code -edit code/server-mux-upload.go /^func main/,/^}/
+
+* Subindo varias portas com ListenAndServe()
+
+.code -edit code/server-mux-upload.go /^func listenAndServer/,/^}/
 
 
 * Copy para servidor único arquivio

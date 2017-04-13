@@ -37,8 +37,37 @@ func main() {
 	router. // --data-binary "@file1.jpg"
 		HandleFunc("/upload-bin", uploadBinary)
 
-	conf := &http.Server{Handler: router, Addr: ":9999"}
-	conf.ListenAndServe()
+	//
+	listenAndServer(router)
+}
+
+func listenAndServer(router *mux.Router) {
+
+	//
+	conf := &http.Server{Handler: router, Addr: ":8081"}
+
+	go conf.ListenAndServe()
+
+	//
+	go func() { http.ListenAndServe(":8082", router) }()
+
+	//
+	go func() { http.ListenAndServe(":8083", nil) }()
+
+	//
+	func() { http.ListenAndServe(":8084", nil) }()
+}
+
+func GetName(w http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	nameX := "Jefferson"
+
+	//server
+	fmt.Println("Id: ", vars["id"])
+
+	// client
+	fmt.Fprintln(w, "", 200, `{"msg":"`+nameX+`"}`)
 }
 
 // This method uploadFormFile only receives files coming in
@@ -53,7 +82,7 @@ func uploadFormFile(w http.ResponseWriter, r *http.Request) {
 
 	pathUserAcess := PathLocal + "/" + acessekey + "/" + handler.Filename
 	existPath, _ := os.Stat(PathLocal + "/" + acessekey)
-	if existPath == nil{ os.MkdirAll(PathLocal+"/"+acessekey, 0777) }
+	if existPath == nil { os.MkdirAll(PathLocal+"/"+acessekey, 0777) }
 
 	f, _ := os.OpenFile(pathUserAcess, os.O_WRONLY|os.O_CREATE, 0777)
 	defer f.Close()
@@ -91,7 +120,7 @@ func uploadFormFileMulti(w http.ResponseWriter, r *http.Request, files []*multip
 			pathUserAcess := PathLocal + "/" + acessekey + "/" + files[i].Filename
 
 			existPath, _ := os.Stat(PathLocal + "/" + acessekey)
-			if existPath == nil {os.MkdirAll(PathLocal+"/"+acessekey, 0777)}
+			if existPath == nil { os.MkdirAll(PathLocal+"/"+acessekey, 0777) }
 			f, _ := os.Create(pathUserAcess)
 			defer f.Close()
 
@@ -112,7 +141,7 @@ func uploadBinary(w http.ResponseWriter, r *http.Request) {
 	pathUpKeyUserFull := pathUpKeyUser + "/" + nameFileUp
 
 	existPath, _ := os.Stat(pathUpKeyUserFull)
-	if existPath == nil{os.MkdirAll(pathUpKeyUser, 0777)}
+	if existPath == nil { os.MkdirAll(pathUpKeyUser, 0777) }
 
 	ff, _ := os.OpenFile(pathUpKeyUserFull, os.O_WRONLY|os.O_CREATE, 0777)
 	defer ff.Close()
