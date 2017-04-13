@@ -1,6 +1,6 @@
-Do zero ao deploy
-Receiving files in an api REST
-Tags: go, rest, uploads files, api gateway, aws, amazon
+REST, Sockets em Golang
+Xml-RPC e WebSocket
+Tags: go, restful, rest,xml-rpc,socket, Websocket
 
 Jefferson Otoni Lima
 *CEO* & *Co-Fundador* | S3wf & S3commerce entrepreneur 2007
@@ -13,15 +13,19 @@ Jefferson Otoni Lima
 
 * Arquiteturas, protocolos para troca de informações
 
+- Web Services {http/https} / [[https://github.com/gorilla/mux][Rest]] e [[https://github.com/fiorix/wsdl2go][Soap]]
+
 - Sockets {tcp/udp} / [[https://golang.org/pkg/net/][pkg net]]
 
 - WebSocket {http/https} / [[https://godoc.org/golang.org/x/net/websocket][pkg websocket]]
 
 - Rpc {http/tcp} / [[https://golang.org/pkg/net/rpc/][pkg rpc]]
 
-- Web Services {http/https} / [[https://github.com/gorilla/mux][Rest]] e [[https://github.com/fiorix/wsdl2go][Soap]]
+- Codigos de exemplos [[https://github.com/jeffotoni/gotalks][Code/Golang]]
 
-- Todos nossos Exemplos [[][Golang]]
+- Apresentação sobre Socket [[http://go-talks.appspot.com/github.com/jeffotoni/gotalks/server-rest.slide][Abrir aqui]]
+
+.image images2/golang8.png
 
 
 * Socket communication {"everything is a file"}
@@ -261,6 +265,8 @@ Jefferson Otoni Lima
 
 * Frameworks REST
 
+- [[https://github.com/sogko/slumber]][Slumer]]
+
 - [[https://github.com/avelino/awesome-go/blob/master/README.md][awesome-go]] (_links_ _diversos_)
 
 - [[https://github.com/gorilla/mux][Mux]] (_simples_ _roteador_ _url_)
@@ -282,67 +288,99 @@ Jefferson Otoni Lima
 
 .image images/golang1.png 
 
-* Diferentes chamadas da ListenAndServe 
 
- // nativo
- http.ListenAndServe(":8088", nil)
- 
- // ssl
- http.ListenAndServeTLS(":443", server.crt, yourkey.key, nil)
+* Construindo nosso server REST / ListenAndServe ( )
+
+ // http
+ //
+ http.ListenAndServe(":9999", nil)
 
  // servindo um site estático
- http.ListenAndServe(":8080", http.FileServer(http.Dir("/static/site"))))
-
- // usando o pkg httpRouter
- router := httprouter.New()
- log.Fatal( http.ListenAndServe(":9999", router) )
+ //
+ http.ListenAndServe(":9999", http.FileServer(http.Dir("/static/site"))))
  
- // usando Mux
- router  := mux.NewRouter()
- router2 := mux.NewRouter()
- conf := &http.Server{ Handler: router, Addr: ":8080" }
- conf.ListenAndServe()
-
  // ssl
- confssl := &http.Server{ Handler: router, Addr:":443",TLSConfig:cfgs,TLSNextProto:""}
- confssl.ListenAndServeTLS(cfg.Pem, cfg.Key))
+ //
+ http.ListenAndServeTLS(":443", server.crt, yourkey.key, nil)
+ 
+ // Criando chaves ssl
+ //
+ ~/user-linux$ openssl req -nodes -newkey rsa:2048 -keyout yourkey.key -out serve.csr
 
 
-* Server nativo {Criando rotas}
+.image images2/golang6.jpg
 
-.code -edit code/rest-nativo-server.go /^func Hello/,/^func main/,/^}/
+* Definindo Rotas Handlers!
 
 
 * Server httpRouter {Criando rotas}
 
 .code -edit code/rest-httprouter-server.go /^func main/,/^}/
 
-* Server Mux {Criando rotas}
+* Tipos de Uploads
 
-.code -edit code/rest-mux-server.go /^func main/,/^}/
-
-
-* Uploads FormFile
-
-.image images/golang1.png 
+.code -edit code/server-mux-upload.go /^func main/,/^}/
 
 
-* Uploads FormFile multipart
+* Copy para servidor único arquivio
 
-.image images/golang1.png 
+.code -edit code/server-mux-upload.go /^func uploadFormFile/,/^}/
+
+
+* Copy para servidor multipolos arquivos
+
+.code -edit code/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
 
 
 * Uploads Binary
 
-.image images/golang1.png 
+.code -edit code/server-mux-upload.go /^func uploadBinary/,/^}/
 
-* Uploads Binary Api Gateway
+.image images2/golang4.png
 
-.image images/golang1.png
+* cURL testando nosso REST
 
-* Uploads S3 aws
+* Upload Form / multipart/form-data
 
-.image images/golang1.png
+ curl -i -X POST http://localhost:9999/upload-form \
+
+  -u "API_KEY:383883jef903xxxx838xxxx" \
+
+  --form "fileupload=@files/file2.pdf" 
+
+.image images2/golang7.png
+
+* Upload Form multi / multipart/form-data
+
+ curl -i --request POST localhost:9999/upload-form-multi \
+
+   -u "API_KEY:383883jef903xxxx838xxxx" \
+
+   --form 'email=jefferson&password=3838373773' \
+
+   --form "fileupload[]=@files/file1.jpg" \
+
+   --form "fileupload[]=@files/file2.pdf"
+
+.image images2/images11.png
+
+* Upload Binary
+
+ // http://https://xxxxxx.execute-api.us-xxx-x.amazonaws.com/upload-bin \
+ curl -i --request POST http://localhost:9999/upload-bin \
+ 
+   -u "API_KEY:383883jef903xxxx838xxxx" \
+
+   -H "Accept: binary/octet-stream" \
+   
+   -H "Content-Type: binary/octet-stream" \
+
+   -H "Name-File: file2.pdf" \
+
+   --data-binary "@files/file2.pdf"
+ 
+.image images2/golang1.jpg
+
 
 
 * Referências
