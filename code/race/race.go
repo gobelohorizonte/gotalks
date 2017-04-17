@@ -1,3 +1,11 @@
+/*
+* Golang presentation
+*
+* @package     main
+* @author      @jeffotoni
+* @size		   2017
+ */
+
 package main
 
 import (
