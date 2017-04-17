@@ -35,26 +35,26 @@ Jefferson Otoni Lima
 
 * Socket / server main()
 
-.code -edit code/socket-server-0.go /^func main/,/^}/
+.code -edit code/socket/socket-server-0.go /^func main/,/^}/
 
 .image images/go-aviator.png 600 600
 
 
 * Socket / server func RedWriteSocket()
 
-.code -edit code/socket-server-0.go /^func RedWriteSocket/,/^}/
+.code -edit code/socket/socket-server-0.go /^func RedWriteSocket/,/^}/
 
 .image images/go-aviator.png 600 600
 
 * Socket / client main()
 
-.code -edit code/socket-client-0.go /^func main/,/^}/
+.code -edit code/socket/socket-client-0.go /^func main/,/^}/
 
 .image images/go-aviator.png 600 600
 
 * Socket / client readerServer()
 
-.code -edit code/socket-client-0.go /^func readerServer/,/^}/
+.code -edit code/socket/socket-client-0.go /^func readerServer/,/^}/
 
 .image images/go-aviator.png 600 600
 
@@ -68,13 +68,13 @@ Jefferson Otoni Lima
 
 * Socket Tcp / server main()
 
-.code -edit code/socket-tcp-server.go /^func main/,/^}/
+.code -edit code/socketcp/socket-tcp-server.go /^func main/,/^}/
 
 .image images/go-aviator.png 600 600
 
 * Socket Tcp / client main()
 
-.code -edit code/socket-tcp-client.go /^func main/,/^}/
+.code -edit code/socketcp/socket-tcp-client.go /^func main/,/^}/
 
 .image images/go-aviator.png 600 600
 
@@ -86,14 +86,14 @@ Jefferson Otoni Lima
 
 * WebSockets Server main
 
-.code -edit code/websocker-server.go /^func main/,/^}/
+.code -edit code/websocket/websocker-server.go /^func main/,/^}/
 
 .image images/go-aviator.png 600 600
 
 
 * WebSockets ListenWebSocker()
 
-.code -edit code/websocker-server.go /^func ListenWebSocker/,/^}/
+.code -edit code/websocket/websocker-server.go /^func ListenWebSocker/,/^}/
 
 .image images/go-aviator.png 600 600
 
@@ -150,23 +150,23 @@ Jefferson Otoni Lima
 
 * RPC http/https Server
 
-.code -edit code/rpc-http-server.go /^func main/,/^}/
+.code -edit code/rpc/rpc-http-server.go /^func main/,/^}/
 
 * RPC http/https Call Stop server
 
-.code -edit code/rpc-http-server.go /^type Stop/,/^}/
+.code -edit code/rpc/rpc-http-server.go /^type Stop/,/^}/
 
 * RPC http/https Client
 
-.code -edit code/rpc-http-client.go /^func main/,/^}/
+.code -edit code/rpc/rpc-http-client.go /^func main/,/^}/
 
 * RPC Tcp / Json Server
 
-.code -edit code/rpc-tcp-server.go /^func main/,/^}/
+.code -edit code/rpc/rpc-tcp-server.go /^func main/,/^}/
 
 * RPC Tcp / Json Client
 
-.code -edit code/rpc-tcp-client.go /^func main/,/^}/
+.code -edit code/rpc/rpc-tcp-client.go /^func main/,/^}/
 
 * Tipos de Web Services / http/https {json/xml}
 
@@ -315,26 +315,26 @@ Jefferson Otoni Lima
 
 * Server httpRouter {Criando rotas}
 
-.code -edit code/rest-httprouter-server.go /^func main/,/^}/
+.code -edit code/httprouter/rest-httprouter-server.go /^func main/,/^}/
 
 * Tipos de Uploads
 
-.code -edit code/server-mux-upload.go /^func main/,/^}/
+.code -edit code/mux/server-mux-upload.go /^func main/,/^}/
 
 
 * Copy para servidor único arquivio
 
-.code -edit code/server-mux-upload.go /^func uploadFormFile/,/^}/
+.code -edit code/mux/server-mux-upload.go /^func uploadFormFile/,/^}/
 
 
 * Copy para servidor multipolos arquivos
 
-.code -edit code/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
+.code -edit code/mux/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
 
 
 * Uploads Binary
 
-.code -edit code/server-mux-upload.go /^func uploadBinary/,/^}/
+.code -edit code/mux/server-mux-upload.go /^func uploadBinary/,/^}/
 
 .image images2/golang4.png
 
