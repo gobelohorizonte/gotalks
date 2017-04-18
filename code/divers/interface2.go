@@ -7,39 +7,37 @@ import (
 	"fmt"
 )
 
-type Sayer interface {
-	Say() string
-	ChangeValue() *string
+type Inter1 interface {
+	Metodh1() string
 }
 
-type X struct {
-	Phrase string
+type Xmethod struct {
+	Text string
 }
 
-func (x *X) Say() string {
-	return x.Phrase
+func (x Xmethod) Metodh1() string {
+	return x.Text
 }
 
-func (x *X) ChangeValue() *string {
-	return &x.Phrase
+func TNext(s string) Xmethod {
+	return Xmethod{s}
 }
 
-func NewX(s string) *X {
-	return &X{s}
+type YMethod struct {
+	Xmethod
 }
 
-type Y struct {
-	*X
-}
+func TNewY() YMethod {
 
-func NewY() Y {
-	return Y{NewX("Hello World")}
+	return YMethod{TNext("...Hello World.. Folks...")}
 }
 
 func main() {
-	y := NewY()
-	var sayer Sayer = y
-	fmt.Println(y.Say())
-	*sayer.ChangeValue() = "Hello Brazil"
-	fmt.Println(y.Say())
+
+	var inter1 Inter1 = TNewY()
+	fmt.Println(inter1.Metodh1())
+
+	tnex := TNext("Hello brazil!!! ..Gophers!")
+	fmt.Println(tnex.Metodh1())
+
 }

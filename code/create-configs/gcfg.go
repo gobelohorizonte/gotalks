@@ -47,16 +47,17 @@ func main() {
 
 	gcfg := GetConfig()
 
-	fmt.Println("Testing config ", gcfg.Section.Ping)
-	fmt.Println("Testing config ", gcfg.Section.Domain)
-	fmt.Println("Testing config ", gcfg.Section.Port)
-	fmt.Println("Testing config ", gcfg.Section.Database)
-	fmt.Println("Testing config ", gcfg.Section.User)
-	fmt.Println("Testing config ", gcfg.Section.Password)
+	fmt.Println("Testing config Ping: ", gcfg.Section.Ping)
+	fmt.Println("Testing config Domain: ", gcfg.Section.Domain)
+	fmt.Println("Testing config Port: ", gcfg.Section.Port)
+	fmt.Println("Testing config Database: ", gcfg.Section.Database)
+	fmt.Println("Testing config User: ", gcfg.Section.User)
+	fmt.Println("Testing config Password: ", gcfg.Section.Password)
 }
 
 // Method GetConfig responsible for creating our instance
 // to access the objects of our config file
+// singleton object Config
 func GetConfig() *Config {
 
 	if cfg.Section.Ping == "ok" {

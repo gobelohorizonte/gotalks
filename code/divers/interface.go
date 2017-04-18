@@ -12,29 +12,29 @@ import (
 	"fmt"
 )
 
-type Sayer interface {
-	Say() string
+type Inter1 interface {
+	Metodh1() string
 }
 
-type X struct {
-	Phrase string
+type Xmethod struct {
+	Text string
 }
 
-func (x X) Say() string {
-	return x.Phrase
+func (x Xmethod) Metodh1() string {
+	return x.Text
 }
 
-func NewX(s string) X {
-	return X{s}
+func TNext(s string) Xmethod {
+	return Xmethod{s}
 }
 
-type Y struct {
-	X
+type YMethod struct {
+	Xmethod
 }
 
-func NewY() Y {
+func TNewY() YMethod {
 
-	return Y{NewX("Hello World")}
+	return YMethod{TNext("...Hello World.. Folks...")}
 }
 
 /////
@@ -101,9 +101,9 @@ func main() {
 	fmt.Println("show4: ", ShowC4().Name)
 	fmt.Println("show4: ", ShowC4().Cpf)
 
-	var sayer Sayer = NewY()
-	fmt.Println(sayer.Say())
+	var inter1 Inter1 = TNewY()
+	fmt.Println(inter1.Metodh1())
 
-	sayer = NewX("Hello brazil gophers!")
-	fmt.Println(sayer.Say())
+	tnex := TNext("Hello brazil!!! ..Gophers!")
+	fmt.Println(tnex.Metodh1())
 }
