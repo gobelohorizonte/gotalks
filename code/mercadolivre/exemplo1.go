@@ -68,5 +68,5 @@ func createProducts(access_token string) {
 
 func main() {
 
-	createProducts("APP_USR-5098372397824980-050912-0e9528343a23ae1b6f5c890da7b32910__D_C__-255726966")
+	createProducts("APP_")
 }
