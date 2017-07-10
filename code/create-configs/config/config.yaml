@@ -1,8 +1,0 @@
-
-# Config server
-
-title: Test Yaml  here
-description: Test description here...
-server:  localhost
-port:  8080
-

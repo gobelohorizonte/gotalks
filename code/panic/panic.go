@@ -11,6 +11,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime"
 )
 
 func main() {
@@ -53,6 +54,7 @@ func main() {
 
 	fmt.Println("Fatorial: ", factorial(4))
 
+	hello()
 }
 
 func factorial(x uint) uint {
@@ -60,4 +62,34 @@ func factorial(x uint) uint {
 		return 1
 	}
 	return x * factorial(x-1)
+}
+
+func GoSafely(fn func()) {
+
+	go func() {
+
+		defer func() {
+
+			if err := recover(); err != nil {
+
+				stack := make([]byte, 1024*8)
+				stack = stack[:runtime.Stack(stack, false)]
+
+				f := "PANIC: %s\n%s"
+				//logger.Logger.Error().Printf(f, err, stack)
+				fmt.Println("oikkkkk", f, err, stack)
+			}
+		}()
+
+		fn()
+	}()
+}
+
+func hello() {
+
+	fmt.Println("estou aqui")
+
+	GoSafely(func() {
+		panic("hi")
+	})
 }

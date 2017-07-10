@@ -19,14 +19,16 @@ import (
 // My type struct to be able to recover
 // in the .gcfg config
 type Config struct {
-	Section struct {
-		Domain   string
-		Port     string
-		Database string
-		User     string
-		Password string
-		Ping     string
-	}
+	Section section
+}
+
+type section struct {
+	Domain   string
+	Port     string
+	Database string
+	User     string
+	Password string
+	Ping     string
 }
 
 var (
