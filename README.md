@@ -17,7 +17,7 @@ Falando sobre REST, HTTP PROXY REVERSE, API GATEWAY, códigos de palestras, arti
  
  Você pode acessar uma versão online das palestras e artigos através de:
 
- ## Apresentação de microserviços usando rEST.
+ ## Apresentação de microserviços usando REST
 
  http://go-talks.appspot.com/github.com/jeffotoni/gotalks/restful.slide
 
