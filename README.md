@@ -1,7 +1,7 @@
 # gotalks
 :loudspeaker: Talks and articles
 
-Apresentando no Meetup BH Go Talks.
+Apresentado no Meetup BH Go Talks.
 
 Falando sobre REST, HTTP PROXY REVERSE, API GATEWAY, códigos de palestras, artigos.
 
