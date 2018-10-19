@@ -92,7 +92,7 @@ alguns conceitos importantes !
 
 - *2000* por [[https://en.wikipedia.org/wiki/Roy_Fielding][Roy Fielding]]
 
-- [[https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto][RPC]] não é um exemplo de REST {[[http://go-talks.appspot.com/github.com/jeffotoni/gotalks/server-rest.slide][Apresentação Socket / RPC]]}
+- [[https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto][RPC]] não é um exemplo de REST {[[http://go-talks.appspot.com/github.com/gobelohorizonte/gotalks/server-rest.slide][Apresentação Socket / RPC]]}
 
 - RESTful (_São_ _as_ _aplicações_ _ou_ _sistemas_ _que_ _usam_ _princípio_ _REST_)
 
