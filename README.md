@@ -19,8 +19,8 @@ Falando sobre REST, HTTP PROXY REVERSE, API GATEWAY, códigos de palestras, arti
 
  ## Apresentação de microserviços usando REST
 
- http://go-talks.appspot.com/github.com/jeffotoni/gotalks/restful.slide
+ http://go-talks.appspot.com/github.com/gobelohorizonte/gotalks/restful.slide
 
 ## Apresentação de serviços usando WebSocket, RPC, Socket
 
-http://go-talks.appspot.com/github.com/jeffotoni/gotalks/server-rest.slide
+http://go-talks.appspot.com/github.com/gobelohorizonte/gotalks/server-rest.slide
