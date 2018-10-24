@@ -190,30 +190,30 @@ alguns conceitos importantes !
 
 * Server httpRouter {Criando rotas}
 
-.code -edit code/httprouter/rest-httprouter-server.go /^func main/,/^}/
+.code -edit httprouter/rest-httprouter-server.go /^func main/,/^}/
 
 * Rotas e Tipos de Uploads
 
-.code -edit code/mux/server-mux-upload.go /^func main/,/^}/
+.code -edit mux/server-mux-upload.go /^func main/,/^}/
 
 * Subindo varias portas com ListenAndServe()
 
-.code -edit code/mux/server-mux-upload.go /^func listenAndServer/,/^}/
+.code -edit mux/server-mux-upload.go /^func listenAndServer/,/^}/
 
 
 * Copy para servidor único arquivio
 
-.code -edit code/mux/server-mux-upload.go /^func uploadFormFile/,/^}/
+.code -edit mux/server-mux-upload.go /^func uploadFormFile/,/^}/
 
 
 * Copy para servidor multipolos arquivos
 
-.code -edit code/mux/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
+.code -edit mux/server-mux-upload.go /^func uploadFormFileMulti/,/^}/
 
 
 * Uploads Binary
 
-.code -edit code/mux/server-mux-upload.go /^func uploadBinary/,/^}/
+.code -edit mux/server-mux-upload.go /^func uploadBinary/,/^}/
 
 .image images2/golang4.png
 
