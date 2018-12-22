@@ -1,9 +1,8 @@
 # gotalks
 :loudspeaker: Talks and articles
 
-Apresentado no Meetup BH Go Talks.
-
-Falando sobre REST, HTTP PROXY REVERSE, API GATEWAY, códigos de palestras, artigos.
+Featured in the BH Go Talks Meetup.
+Talking about REST, HTTP PROXY REVERSE, API GATEWAY, Codes for lectures, articles.
 
 ## Installation to run local on your machine
 
@@ -17,10 +16,10 @@ Falando sobre REST, HTTP PROXY REVERSE, API GATEWAY, códigos de palestras, arti
  
  Você pode acessar uma versão online das palestras e artigos através de:
 
- ## Apresentação de microserviços usando REST
+ ## Presentation of microservices using REST
 
  http://go-talks.appspot.com/github.com/gobelohorizonte/gotalks/restful.slide
 
-## Apresentação de serviços usando WebSocket, RPC, Socket
+## Presentation of microservices using WebSocket, RPC, Socket
 
 http://go-talks.appspot.com/github.com/gobelohorizonte/gotalks/server-rest.slide
